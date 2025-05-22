@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 int main() 
 {
@@ -9,28 +9,30 @@ int main()
 
     std::cout << "************** Барбершоп-калькулятор **************\n";
     std::cout << "Введите число мужчин в городе: ";
-    std::cin >> mansCount;
+    std::cin >> mansCount; // 482
 
     std::cout << "Сколько уже барберов удалось нанять?";
-    std::cin >> barbersCount;
+    std::cin >> barbersCount; 
 
     //------------------------------------------------------------------------
 
 
     int mansPerBarber = 8; // один человек в час, смена 8 часов
-    int mansPerBarberPerMonth = mansPerBarber * 30; // работа 1 барбера за 1 месяц // 240
+    int mansPerBarberPerMonth = mansPerBarber * 30; // работа 1 барбера за 1 месяц // 
 
     std::cout << "Один барбер стрижет столько клиентов в месяц " << mansPerBarberPerMonth << "\n";
 
 
-    int requiredBarbersCount = mansCount / mansPerBarberPerMonth;
+    int requiredBarbersCount = mansCount / mansPerBarberPerMonth; // 2
 
 
-    if (requiredBarbersCount * mansPerBarberPerMonth < mansCount) {
-        requiredBarbersCount += 1;
+    if (requiredBarbersCount * mansPerBarberPerMonth < mansCount) 
+    {
+        requiredBarbersCount += 1; // 3
     }
 
-    std::cout << "Необходимое число барберов: " << requiredBarbersCount << "\n";
+
+    std::cout << "Необходимое число барберов: " << requiredBarbersCount << "\n"; // 3
 
 
     std::cout << requiredBarbersCount << " барбера могут постричь "
@@ -38,7 +40,9 @@ int main()
 
 
 
-    if (requiredBarbersCount % barbersCount == 0) {
+
+
+    if (barbersCount < requiredBarbersCount) {
             std::cout << "Нужно больше барберов!!!\n";
     }
     else if (requiredBarbersCount == barbersCount) {
