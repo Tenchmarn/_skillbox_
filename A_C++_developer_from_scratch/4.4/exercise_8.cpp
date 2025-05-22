@@ -1,4 +1,5 @@
-﻿#include <iostream>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -43,7 +44,7 @@ int main()
 	*/
 
 				// 3 Вариант - нахождение максимальной зарплаты
-	if (employee_1 > employee_3)
+	if (employee_1 >= employee_3)
 	{
 		max = (employee_1 > employee_2) ? employee_1 : employee_2;
 	}
