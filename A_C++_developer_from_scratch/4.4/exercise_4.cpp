@@ -16,15 +16,15 @@ int main()
 
 	if (experience < 1000)
 	{
-		level = 1;
+		level = 2;
 	}
 	else if (experience < 2500)
 	{
-		level = 2;
+		level = 3;
 	}
 	else
 	{
-		level = 3;
+		level = 4;
 	}
 
 	cout << "\nВаш уровень: " << level;
