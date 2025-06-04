@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -6,25 +6,22 @@ int main()
 {
 	setlocale(LC_ALL, "RUS");
 
-	int n, sum = 0, count_1;
+	int number;
 
-	cout << "Введите количество для сложения: ";
-	cin >> count_1;
+	cout << "Введите число: ";
+	cin >> number;
 
-	do
-	{
-		cout << "Введите цифру или число "
-			<< count_1
-			<< ": ";
-		cin >> n;
+	int sum = 0;
 
-		sum += n;
+	while (number != 0) {
 
-		count_1--;
+		sum += number % 10;
 
-	} while (count_1 != 0);
+		number /= 10;
 
-	cout << "\nРезультат сложения: " << sum;
+	}
+
+	cout << "Сумма цифр равна:" << sum;
 
 	return 0;
 }
