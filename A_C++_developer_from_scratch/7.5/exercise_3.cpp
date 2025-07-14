@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -15,16 +15,23 @@ int main()
 		cout << "[Марсоход]: " << "Марсоход находится на позиции "
 			<< x << ", " << y << ", введите команду: \n";
 		cout << "[Оператор]: "; cin >> ch;
-		if (ch == 'w') y++;
-		if (ch == 'a') x--;
-		if (ch == 's') y--;
-		if (ch == 'd') x++;
-		
-		if (x > 15) x--;
-		if (x < 0) x++;
-		if (y > 20) y--;
-		if (y < 0) y++;
-			
+
+		if (ch == 'w')
+		{
+			if (y < 20) y += 1;
+		}
+		if (ch == 'a')
+		{
+			if (x > 0) x -= 1;
+		}
+		if (ch == 's')
+		{
+			if (y > 0) y -= 1;
+		}
+		if (ch == 'd')
+		{
+			if (x < 15) x += 1;
+		}			
 	}
 
 	return 0;
