@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -7,30 +7,22 @@ int main()
 	setlocale(LC_ALL, "RUS");
 
 	int stock = 100; 
-	int month; 
-	int count_month;
+	int month = 1;
 
-	cout << "Введите месяц: ";
-	cin >> month;
-	cout << '\n';
+	cout << "\nВсего гречки было на начало подсчёта: " << stock << " кг\n";
 
-	for (count_month = 1; count_month <= month; count_month++)
+	for (month; stock >= 0; month++)
 	{
 		stock = stock - 4;
 
-		cout << "После " << count_month
+		cout << "После " << month
 			<< " месяца у вас в запасе останется "
 			<< stock << " кг гречки\n";
 		if (stock <= 0)
 		{
-			cout << "\n\tПосле " << count_month
+			cout << "\n\tПосле " << month
 				<< " месяца гречка закончится\n";
 			break;
-		}
-		else if (stock > 0 && count_month == month)
-		{
-			cout << "\n\tПосле " << count_month
-				<< " месяца гречка останется\n";
 		}
 	}
 
