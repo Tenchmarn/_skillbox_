@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 
 using namespace std;
@@ -18,37 +18,89 @@ int main()
 		bar_x_1,
 		bar_y_1;
 
+	bool condition = true;
+	int total_cubes = 1;
+
 	cout << "Введите размеры бруска: \n";
 
-	do
+	while (true)
 	{
-
 		cout << "X: "; cin >> bar_x_1;
-		if (bar_x_1 < 5) cout << "Введите значение Х больше или равное 5.\n";
-	} while (bar_x_1 < 5);
 
-	do
+		if (bar_x_1 < 5)	// повторная инициализация
+		{
+			cout << "Введите значение Х больше или равное 5.\n";
+		}
+		else
+		{
+			condition = (int(bar_x_1) % cube_x_1 == 0);
+			if (condition)
+			{
+				total_cubes *= floor(bar_x_1);
+			}
+			else
+			{
+				total_cubes *= floor(bar_x_1 - (int(bar_x_1) % cube_x_1));
+			}
+			break;
+		}
+	}
+
+	while (true)
 	{
 		cout << "Y: "; cin >> bar_y_1;
-		if (bar_y_1 < 5) cout << "Введите значение Y больше или равное 5.\n";
-	} while (bar_y_1 < 5);
 
-	do
+		if (bar_y_1 < 5)	// повторная инициализация
+		{
+			cout << "Введите значение Y больше или равное 5.\n";
+		}
+		else
+		{
+			condition = (int(bar_y_1) % cube_y_1 == 0);
+			if (condition)
+			{
+				total_cubes *= floor(bar_y_1);
+			}
+			else
+			{
+				total_cubes *= floor(bar_y_1 - (int(bar_y_1) % cube_y_1));
+			}
+			break;
+		}
+	}
+
+	while (true)
 	{
 		cout << "Z: "; cin >> bar_z_1;
-		if (bar_z_1 < 5) cout << "Введите значение Z больше или равное 5.\n";
-	} while (bar_z_1 < 5);
 
+		if (bar_z_1 < 5)	// повторная инициализация
+		{
+			cout << "Введите значение Z больше или равное 5.\n";
+		}
+		else		
+		{
+			condition = (int(bar_z_1) % cube_z_1 == 0);
+			if (condition)
+			{
+				total_cubes *= floor(bar_z_1);
+			}
+			else
+			{
+				total_cubes *= floor(bar_z_1 - (int(bar_z_1) % cube_z_1));
+			}
+			break;
+		}
+	}
 
 	// всего кубиков
-	int total_cubes = (floor(bar_x_1) * floor(bar_y_1) * floor(bar_z_1)) 
-		/ (cube_x_1 * cube_y_1 * cube_z_1); 
+	total_cubes /= (cube_x_1 * cube_y_1 * cube_z_1); 
 
 	cout << "Из бруска "
 		<< bar_x_1 << "-"
 		<< bar_y_1 << "-"
 		<< bar_z_1 << " можно изготовить "
 		<< total_cubes << " кубиков.\n";
+
 
 	int kit = 0;
 
@@ -71,8 +123,3 @@ int main()
 
 	return 0;
 }
-
-
-
-
-
