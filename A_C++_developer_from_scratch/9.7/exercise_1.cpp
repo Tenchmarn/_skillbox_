@@ -26,57 +26,118 @@ int main()
 
 	while (true)
 	{
+		bool checkpoint = true;
 		cout << "Введите время отправления (HH:MM): ";
 		cin >> time_departure;
 
-		if ((time_departure.length() != 5)
-			|| (time_departure[2] != ':')
-			|| (time_departure[0] < '0')
-			|| (time_departure[0] > '2')
-			|| (time_departure[1] < '0')
-			|| (time_departure[1] > '3')
-			|| (time_departure[3] < '0')
-			|| (time_departure[3] > '5')
-			|| (time_departure[4] < '0')
-			|| (time_departure[4] > '9'))
+		if (time_departure.length() != 5)
 		{
-			cout << "Error! Try again! (Ошибка! Повторите попытку!)\n" << '\7';
+			!checkpoint;
 		}
-		else
+		else if(time_departure.length() == 5)
+		{
+			if ((time_departure[0] == '0') || (time_departure[0] == '1'))
+			{
+				if ((time_departure[1] < '0') || (time_departure[1] > '9'))
+				{
+					checkpoint = false;
+				}
+			}
+			else if	(time_departure[0] == '2')
+			{
+				if ((time_departure[1] < '0') || (time_departure[1] > '3'))
+				{
+					checkpoint = false;
+				}
+			}
+
+			if (time_departure[2] != ':')
+			{
+				checkpoint = false;
+			}
+
+			if ((time_departure[3] < '0') || (time_departure[3] > '5'))
+			{
+				checkpoint = false;
+			}
+
+			if ((time_departure[4] < '0') || (time_departure[4] > '9'))
+			{
+				checkpoint = false;
+			}
+		}
+		
+		if (checkpoint)
 		{
 			hours_td = 10 * (time_departure[0] - '0') + (time_departure[1] - '0');
 			minutes_td = 10 * (time_departure[3] - '0') + (time_departure[4] - '0');
 			second_td = hours_td * 3600 + minutes_td * 60;
 			break;
 		}
+		else
+		{
+			cout << "Error! Try again! (Ошибка! Повторите попытку!)\n" << '\7';
+		}
 	}
 
 	while (true)
 	{
+		bool checkpoint = true;
 		cout << "Введите время прибытия (HH:MM): ";
 		cin >> time_arrival;
 
-		if ((time_arrival.length() != 5)
-			|| (time_arrival[2] != ':')
-			|| (time_arrival[0] < '0')
-			|| (time_arrival[0] > '2')
-			|| (time_arrival[1] < '0')
-			|| (time_arrival[1] > '3')
-			|| (time_arrival[3] < '0')
-			|| (time_arrival[3] > '5')
-			|| (time_arrival[4] < '0')
-			|| (time_arrival[4] > '9'))
+		if (time_arrival.length() != 5)
 		{
-			cout << "Error! Try again! (Ошибка! Повторите попытку!)\n" << '\7';
+			!checkpoint;
 		}
-		else
+		else if (time_arrival.length() == 5)
+		{
+			if ((time_arrival[0] == '0') || (time_arrival[0] == '1'))
+			{
+				if ((time_arrival[1] < '0') || (time_arrival[1] > '9'))
+				{
+					checkpoint = false;
+				}
+			}
+			else if (time_arrival[0] == '2')
+			{
+				if ((time_arrival[1] < '0') || (time_arrival[1] > '3'))
+				{
+					checkpoint = false;
+				}
+			}
+
+			if (time_arrival[2] != ':')
+			{
+				checkpoint = false;
+			}
+
+			if ((time_arrival[3] < '0') || (time_arrival[3] > '5'))
+			{
+				checkpoint = false;
+			}
+
+			if ((time_arrival[4] < '0') || (time_arrival[4] > '9'))
+			{
+				checkpoint = false;
+			}
+		}
+
+
+
+		if(checkpoint)
 		{
 			hours_ta = 10 * (time_arrival[0] - '0') + (time_arrival[1] - '0');
 			minutes_ta = 10 * (time_arrival[3] - '0') + (time_arrival[4] - '0');
 			second_ta = hours_ta * 3600 + minutes_ta * 60;
 			break;
 		}
+		else
+		{
+			cout << "Error! Try again! (Ошибка! Повторите попытку!)\n" << '\7';
+		}
 	}
+
 
 	if (second_td > second_ta)
 	{
