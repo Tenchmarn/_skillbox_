@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -78,10 +78,30 @@ int main()
             }
         }
 
-        int bulls = 0;    // быки - кол-во цифр совпадающих по значению и местоположению
-        int cows = 0;     // коровы - кол-во цифр совпадающих по значению, но не по местоположению
+        int bulls = 0;    // быки - цифры на правильных позициях
+        int cows = 0;     // коровы - цифры есть в числе, но не на своих местах
 
-        // Подсчет быков
+        // подсчет сопадений
+        int total_matches = 0;
+
+        // счет совпадения цифр (без учета позиций)
+        for (char digit = '0'; digit <= '9'; digit++)
+        {
+            int count_in_number = 0;
+            int count_in_input = 0;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (str_number[i] == digit) count_in_number++;
+                if (str_input[i] == digit) count_in_input++;
+            }
+
+            // (сколько раз цифра встречается в обоих числах)
+            // минимум из 2-х. 
+            total_matches += min(count_in_number, count_in_input);
+        }
+
+        // Подсчет быков (цифры на правильных позициях)
         for (int i = 0; i < 4; i++)
         {
             if (str_number[i] == str_input[i])
@@ -90,46 +110,8 @@ int main()
             }
         }
 
-        // Подсчет коров + ~вычет быков
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                if (i != j && str_number[i] == str_input[j])
-                {
-                    // Проверка позиции
-                    bool is_bull = false;
-                    for (int k = 0; k < 4; k++)
-                    {
-                        if (k == j && str_number[k] == str_input[k])
-                        {
-                            is_bull = true;
-                            break;
-                        }
-                    }
-
-                    if (!is_bull)
-                    {
-                        // Повторная проверка
-                        bool already_counted = false;
-                        for (int k = 0; k < i; k++)
-                        {
-                            if (str_number[k] == str_number[i])
-                            {
-                                already_counted = true;
-                                break;
-                            }
-                        }
-
-                        if (!already_counted)
-                        {
-                            cows++;
-                            break; // переходим к следующей цифре загаданного числа
-                        }
-                    }
-                }
-            }
-        }
+        // Коровы = все совпадения - быки
+        cows = total_matches - bulls;
 
         cout << "\nБыков: " << bulls << ", Коров: " << cows << endl;
 
@@ -138,13 +120,15 @@ int main()
             cout << "Вы угадали число!\n";
             break;
         }
-
-        cout << "Желаете продолжить? (n/y): ";
-        cin >> new_attempt;
+        else
+        {
+            cout << "Желаете продолжить? (n/y): ";
+            cin >> new_attempt;
+        }
 
     } while (new_attempt != 'n' && new_attempt != 'N');
 
-    cout << "\n\n\tЗавершение программы!\n\n";
+    cout << "\n\tЗавершение программы!\n\n";
 
     return 0;
 }
